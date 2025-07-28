@@ -19,11 +19,16 @@ const ul = document.createElement('ul');
 window.addEventListener('hashchange',function() {
   const id = this.location.hash.substring(1); // # 제거
 
-  const newsContent = getData(contentUrl);
-  const title = document.createElement('h1');
+  const newsContent = getData(contentUrl.replace('@id',id));
 
-  title.innerHTML = newsContent.title;
-  content.appendChild(title);
+  container.innerHTML = `
+    <h1>${newsContent.title}</h1>
+
+    <div>
+      <a href="#">back</a>
+    </div>
+    `;
+
 });
 
 for(let i =0; i<10; i++) {

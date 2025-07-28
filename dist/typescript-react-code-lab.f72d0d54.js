@@ -683,10 +683,14 @@ const ul = document.createElement('ul');
 // hashchange 이벤트
 window.addEventListener('hashchange', function() {
     const id = this.location.hash.substring(1); // # 제거
-    const newsContent = getData(contentUrl);
-    const title = document.createElement('h1');
-    title.innerHTML = newsContent.title;
-    content.appendChild(title);
+    const newsContent = getData(contentUrl.replace('@id', id));
+    container.innerHTML = `
+    <h1>${newsContent.title}</h1>
+
+    <div>
+      <a href="#">back</a>
+    </div>
+    `;
 });
 for(let i = 0; i < 10; i++){
     const div = document.createElement('div');
